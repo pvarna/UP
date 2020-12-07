@@ -33,10 +33,6 @@ int main ()
                 tempArray[tempCount] = matrix[row][col];
                 ++tempCount;
             }
-            /*if (row % 2 == 0)
-            {
-                reverseArray(tempArray, tempCount);
-            }*/
         }
         //printArray(tempArray, tempCount);
         if (diag % 2 == 0)
@@ -101,3 +97,12 @@ void printArray(int array[], size_t size)
     }
     std::cout << std::endl;
 }
+
+/*
+
+int x = 10, y;
+
+y = ++x;
+y = x++;
+
+*/
