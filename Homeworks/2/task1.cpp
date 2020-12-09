@@ -120,7 +120,6 @@ void updateField(int field[][MAX_COLUMNS_SIZE], size_t height, size_t width, int
 int checkWinner(int field[][MAX_COLUMNS_SIZE], size_t height, size_t width)
 {
     int countPlayer1 = 0, countPlayer2 = 0;
-
     // rows
     for (int row = height-1; row >= 0; --row)
     {
