@@ -13,11 +13,12 @@
 
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 using namespace std;
 
 const int MAX_SIZE = 100;
 
-unsigned readSize();
+static unsigned readSize();
 
 // Reads an array data from the stdin
 void readArray(int* array, unsigned size)
@@ -124,6 +125,7 @@ void filterArray();
 
 int main()
 {
+/*
     int array[MAX_SIZE];
     unsigned n = readSize();
 
@@ -137,8 +139,8 @@ int main()
     selectionSort(array, n);
 
     printArray(array, n);
-
-//    filterArray();
+*/
+    filterArray();
     return 0;
 }
 
@@ -160,7 +162,7 @@ static int* readArrayDynamic(unsigned * size)
    return arr;
 }
 
-void pause()
+static void pause()
 {
     cin.sync();
     cout << "... press enter to continue ...";
@@ -189,7 +191,7 @@ void filterArray()
             ++cnt;
 
     // allocate memory only for the even elements
-    int * result = new(nothrow) int[cnt];
+    int* result = new(nothrow) int[cnt];
     if (!result) {        // mandatory check
         delete[] data;    // If something goes wrong, clean the previously allocated memory
         cerr << "No memory for copy!" << endl;
@@ -206,7 +208,6 @@ void filterArray()
     pause();                            // Take a look at the memory at that point
 
     delete[] data;       // Clean the initial array, as we do not need it any more
-
 
     //printArray(data, cnt);
     cout << "--- Check the memory with result ---\n";
