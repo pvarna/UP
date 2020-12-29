@@ -51,7 +51,7 @@ void printNumbersFromNTo1(unsigned n)
         return;
     }
     std::cout << n << " ";
-    printNumbersFrom1ToN(n-1);   
+    printNumbersFromNTo1(n-1);   
 }
 
 void printRow(unsigned k, unsigned n)
