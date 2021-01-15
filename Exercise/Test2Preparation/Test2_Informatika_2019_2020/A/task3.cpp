@@ -3,9 +3,11 @@
 
 char* rleEncode(const char* text);
 
+int getCountOfDigits (int number, int counter);
+
 int main ()
 {
-    const char* text = "aaaaaaaaabcdddddaaaaaaabcccccadddd";
+    const char* text = "aaaaaaaaaaaaaaabcddddddaaaaaaabcccccaddddddddddddddddddddddddddddd";
 
     char* newText = rleEncode(text);
 
@@ -32,7 +34,8 @@ char* rleEncode(const char* text)
             }
             if (counter >= 4)
             {
-                compressedSize = compressedSize - counter + 4;
+                int digits = getCountOfDigits(counter, 0);
+                compressedSize = compressedSize - counter + 3 + digits;
             }
             i += (counter-2);
         }
@@ -58,10 +61,18 @@ char* rleEncode(const char* text)
             if (counter >= 4)
             {
                 newText[currentIndex] = '(';
-                newText[currentIndex+1] = '0' + counter;
-                newText[currentIndex+2] = text[i];
-                newText[currentIndex+3] = ')';
-                currentIndex += 4;
+                int digits = getCountOfDigits(counter, 0);
+                int tempCounter = counter;
+                for (int i = digits; i >= 1; --i)
+                {
+                    newText[currentIndex+i] = '0' + (tempCounter%10);
+                    tempCounter /= 10;
+                }
+                //newText[currentIndex+1] = '0' + counter;
+                newText[currentIndex+digits+1] = text[i];
+                
+                newText[currentIndex+digits+2] = ')';
+                currentIndex += (3+digits);
                 i += (counter-1);
             }
             else
@@ -74,4 +85,16 @@ char* rleEncode(const char* text)
     newText[currentIndex] = '\0';
 
     return newText;
+}
+
+int getCountOfDigits (int number, int counter)
+{
+    if (number == 0)
+    {
+        return counter;
+    }
+    
+    ++counter;
+
+    return getCountOfDigits(number/10, counter);
 }
