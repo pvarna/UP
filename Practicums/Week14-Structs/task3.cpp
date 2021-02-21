@@ -13,9 +13,15 @@ struct Marks
 
 void readMarks(Marks& marks);
 
+double calculateFinalMark(Marks marks);
+
 int main ()
 {
+    Marks marksPesho;
 
+    readMarks(marksPesho);
+
+    std::cout << calculateFinalMark(marksPesho) << std::endl;
 
     return 0;
 }
@@ -40,6 +46,14 @@ void readMarks(Marks& marks)
     std::cout << "Theory exam: ";
     std::cin >> marks.examTheory;
 
-    std::cout << "Theory exam: ";
-    std::cin >> marks.examTheory;
+    std::cout << "Problems exam: ";
+    std::cin >> marks.examProblems;
+}
+
+double calculateFinalMark(Marks marks)
+{
+    double homeworks = (marks.homework1 + marks.homework2 + marks.homework3) / 3;
+    double testsHomeworks = (marks.test1 + marks.test2 + homeworks) / 3;
+    double exams = (marks.examTheory + marks.examProblems) / 2;
+    return (testsHomeworks*0.5 + exams*0.5);
 }
