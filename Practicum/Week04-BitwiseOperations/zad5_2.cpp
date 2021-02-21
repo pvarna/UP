@@ -8,7 +8,9 @@ int main ()
 
     int shiftedNumber = 1 << position; // 0001 ---> 0100
 
-    std::cout << (number ^ shiftedNumber) << std::endl;
+    shiftedNumber = ~(shiftedNumber); // 0100 ---> 1011
+
+    std::cout << (number & shiftedNumber) << std::endl;
 
     return 0;
 }
@@ -16,6 +18,14 @@ int main ()
 /*
     0100
    ^
+    1111
+    ----
+    1011
+*/
+
+/*
+    1011
+    &
     1111
     ----
     1011
