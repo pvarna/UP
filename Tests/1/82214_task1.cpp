@@ -85,6 +85,7 @@ double decimalToBinary (int number)
 int getNumberOfDigits (int number)
 {
     int counter = 0;
+    
     while (number)
     {
         int lastDigit = number % 10;
